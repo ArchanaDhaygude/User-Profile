@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let user of users"
+          (click)="loadUserDetails(user)"
+        >
+          <input type="checkbox" [(ngModel)]="user.selected" />
+          {{ user.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <div class="card" *ngIf="selectedUser">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedUser.name }}</h5>
+          <p class="card-text">Email: {{ selectedUser.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+      <button
+        class="btn btn-primary float-right"
+        (click)="openAddUserModal()"
+      >
+        +
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<app-add-user (userAdded)="onUserAdded($event)"></app-add-user>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <button
+        class="btn btn-danger"
+        (click)="deleteSelectedUsers()"
+      >
+        Delete
+      </button>
+
+    </div>
+
+  </div>
+</div>

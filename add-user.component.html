@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add User</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="onSubmit()">
+    <!-- Form fields for user details -->
+    <div class="col-md-3">
+      <label for="">Name</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter Name">
+        <div class="text-danger" *ngIf="userForm.controls['name'].touched">
+          <span *ngIf="userForm.controls['name'].errors?.['required']">This field is required</span>
+          <span *ngIf="userForm.controls['name'].errors?.['minlength']">Min. 5 characters are required</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+              <label for="">Email</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
+                <div class="text-danger" *ngIf="userForm.controls['email'].touched">
+                  <span *ngIf="userForm.controls['email'].errors?.['required']">This field is required</span>
+                  <span *ngIf="userForm.controls['email'].errors?.['email']">Email is not proper</span>
+                </div>
+            </div>
+    <button type="submit" class="btn btn-primary">Add User</button>
+  </form>
+</div>
